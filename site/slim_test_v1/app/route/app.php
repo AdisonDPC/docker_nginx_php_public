@@ -19,7 +19,7 @@ $aApp -> get('/', function (Request $rRequest, Response $rResponse) {
 $aApp -> get('/dd', function () { Kint::dump([1, 'a']); return 'Kint'; });
 
 $aApp -> get('/home', Home_Controller::Class . ':getHome');
-$aApp -> get('/table', Table_Controller::Class . ':getHome');
+$aApp -> get('/user/all', User_Controller::Class . ':getall');
 
 $aApp -> get('/middleware/no', function () { return 'Hello'; });
 $aApp -> get('/middleware/yes', function () { return 'Hello'; }) -> add(new \Middleware\Home_Middleware());

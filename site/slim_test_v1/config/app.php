@@ -9,12 +9,12 @@ return [
         ],
         'db' => [
             'driver' => 'mysql',
-            'host' => 'DB_MARIA_DB_LOCAL',
-            'database' => 'DB_SLIM_TEST_V1',
-            'username' => 'adpcuser',
-            'password' => '_bQWl3839',
+            'host' => '192.168.1.122:3344',
+            'database' => 'db_test',
+            'username' => 'testuser',
+            'password' => 'testuser@docker',
             'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'collation' => 'utf8_spanish2_ci',
             'prefix'    => ''
         ]
     ]

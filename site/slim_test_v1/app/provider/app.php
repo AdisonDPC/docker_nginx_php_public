@@ -37,5 +37,4 @@ $aContainer['db'] = function ($cContainer) {
 };
 
 $aContainer['Home_Controller'] = function ($cContainer) { return new \Controller\Home_Controller($cContainer); };
-
-$aContainer['Table_Controller'] = function ($cContainer) { return new \Controller\Table_Controller($cContainer); };
+$aContainer['User_Controller'] = function ($cContainer) { return new \Controller\User_Controller($cContainer); };
