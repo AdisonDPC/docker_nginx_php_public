@@ -10,8 +10,19 @@
     </head>
     <body>
         <h1>Users</h1>
+
         <div>
-            <span>{{ aUsers }}</span>
+
+            {% for uUser in aUsers %}
+
+                <div>
+                    <span>{{ uUser.name }}</span>
+                    <span> | </span>
+                    <span>{{ uUser.email }}</span>
+                </div>
+
+            {% endfor %}
+
         </div>
     </body>
 </html>
