@@ -19,7 +19,23 @@ $aApp -> get('/', function (Request $rRequest, Response $rResponse) {
 $aApp -> get('/dd', function () { Kint::dump([1, 'a']); return 'Kint'; });
 
 $aApp -> get('/home', Home_Controller::Class . ':getHome');
-$aApp -> get('/user/all', User_Controller::Class . ':getall');
+
+$aApp -> get('/user/all/controller', User_Controller::Class . ':getall');
+
+$aApp -> get('/user/all/closure', function (Request $rRequest, Response $rResponse) {
+
+    $aParameters = [
+        'aPage' =>  [
+            'strTitle' => 'Welcome - Slim + Twig',
+            'strDescription' => 'Welcome to the oficial page Slim + Twig.',
+            'strType' => 'Closure'
+        ],
+        'aUsers' => $this -> db -> table('users') -> get()
+    ];
+
+    return $this -> view -> render($rResponse, 'users.twig', $aParameters);
+
+});
 
 $aApp -> get('/middleware/no', function () { return 'Hello'; });
 $aApp -> get('/middleware/yes', function () { return 'Hello'; }) -> add(new \Middleware\Home_Middleware());

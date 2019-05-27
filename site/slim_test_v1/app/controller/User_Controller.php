@@ -20,7 +20,8 @@ class User_Controller {
         $aParameters = [
             'aPage' =>  [
                 'strTitle' => 'Welcome - Slim + Twig',
-                'strDescription' => 'Welcome to the oficial page Slim + Twig.'
+                'strDescription' => 'Welcome to the oficial page Slim + Twig.',
+                'strType' => 'Controller'
             ],
             'aUsers' => $this -> cContainer -> db -> table('users') -> get()
         ];
