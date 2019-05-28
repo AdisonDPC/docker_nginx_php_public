@@ -46,3 +46,4 @@ $aContainer['db'] = function ($cContainer) {
 
 $aContainer['Home_Controller'] = function ($cContainer) { return new \Controller\Home_Controller($cContainer); };
 $aContainer['User_Controller'] = function ($cContainer) { return new \Controller\User_Controller($cContainer); };
+$aContainer['Pokemon_Controller'] = function ($cContainer) { return new \Controller\Pokemon_Controller($cContainer); };
