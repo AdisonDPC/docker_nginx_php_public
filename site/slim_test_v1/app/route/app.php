@@ -20,6 +20,21 @@ $aApp -> get('/dd', function () { Kint::dump([1, 'a']); return 'Kint'; });
 
 $aApp -> get('/home', Home_Controller::Class . ':getHome');
 
+$aApp -> get('/pokemon/all/closure', function (Request $rRequest, Response $rResponse) {
+
+    $aParameters = [
+        'aPage' =>  [
+            'strTitle' => 'Welcome - Slim + Twig',
+            'strDescription' => 'Welcome to the oficial page Slim + Twig.',
+            'strType' => 'Closure'
+        ],
+        'aPokemons' => json_decode(file_get_contents($this -> db['path'] . '/pokemons.json'), true)
+    ];
+
+    return $this -> view -> render($rResponse, 'pokemons.twig', $aParameters);
+
+});
+
 $aApp -> get('/user/all/controller', User_Controller::Class . ':getall');
 
 $aApp -> get('/user/all/closure', function (Request $rRequest, Response $rResponse) {

@@ -21,19 +21,27 @@ $aContainer['view'] = function ($cContainer) {
 
 // SERVICE FACTORY FOR THE ORM.
 
-$aContainer['db'] = function ($cContainer) {
+// $aContainer['db'] = function ($cContainer) {
 
-    $mManager = new \Illuminate\Database\Capsule\Manager;
+//     $mManager = new \Illuminate\Database\Capsule\Manager;
+
+//     $aConfig = $cContainer -> get('config')['db'];
+
+//     $mManager -> addConnection($aConfig);
+
+//     $mManager -> setAsGlobal();
+//     $mManager -> bootEloquent();
+
+//     return $mManager;
+
+// };
+
+$aContainer['db'] = function ($cContainer) {
 
     $aConfig = $cContainer -> get('config')['db'];
 
-    $mManager -> addConnection($aConfig);
-
-    $mManager -> setAsGlobal();
-    $mManager -> bootEloquent();
-
-    return $mManager;
-
+    return $aConfig;
+    
 };
 
 $aContainer['Home_Controller'] = function ($cContainer) { return new \Controller\Home_Controller($cContainer); };
