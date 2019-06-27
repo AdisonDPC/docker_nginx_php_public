@@ -98,6 +98,11 @@ $aApp -> get('/user/all/closure', function (Request $rRequest, Response $rRespon
 
 $aApp -> get('/user/all/controller', User_Controller::Class . ':getall');
 
+$aApp -> get('/phrases/count', Phrases_Controller::Class . ':getCount');
+$aApp -> get('/phrases/random', Phrases_Controller::Class . ':getRandom');
+$aApp -> get('/phrases/get/{iRow}', Phrases_Controller::Class . ':getRow');
+$aApp -> get('/phrases/add/{strPhrase}', Phrases_Controller::Class . ':addRow');
+
 $aApp -> get('/middleware/no', function () { return 'Hello'; });
 $aApp -> get('/middleware/yes', function () { return 'Hello'; }) -> add(new \Middleware\Home_Middleware());
 

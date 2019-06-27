@@ -11,9 +11,9 @@ class Pokemon_Controller {
 
     protected $cContainer;
 
-    public function __construct(Container $cContainer) { $this -> cContainer = $cContainer; }
+    public function __construct (Container $cContainer) { $this -> cContainer = $cContainer; }
 
-    public function getall(Request $rRequest, Response $rResponse) {
+    public function getall (Request $rRequest, Response $rResponse) {
 
         $aParameters = [
             'aPage' =>  [

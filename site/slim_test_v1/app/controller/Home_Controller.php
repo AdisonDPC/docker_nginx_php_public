@@ -11,7 +11,7 @@ class Home_Controller {
 
     protected $cContainer;
 
-    public function __construct(Container $cContainer) { $this -> cContainer = $cContainer; }
+    public function __construct (Container $cContainer) { $this -> cContainer = $cContainer; }
 
     public function getHome (Request $rRequest, Response $rResponse) {
 

@@ -19,7 +19,7 @@ return [
         // ]
         'db' => [
             'driver' => 'json',
-            'path' => __DIR__ . '/../databases'
+            'path' => __DIR__ . '/../database'
         ]
     ]
 ];

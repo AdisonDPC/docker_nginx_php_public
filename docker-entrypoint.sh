@@ -1,10 +1,17 @@
 # Install Composer dependencies in slim_test_v1.
 
+USER_ROOT='root';
+GROUP='www-data';
+
 cd slim_test_v1
 
 composer install
 composer clear-cache
 composer dump-autoload
+
+# Set Owners and Groups in databases folder.
+
+chown -R :${GROUP} database
 
 # Configuring site in NGiNX server.
 
@@ -17,7 +24,7 @@ service php7.3-fpm start
 service nginx start
 
 # Uncomment for open depuration terminal.
-/bin/bash
+# /bin/bash
 
 # Uncomment for show NGiNX access logs.
-# tail -f /var/log/nginx/access.log /var/log/nginx/error.log | ccze
+tail -f /var/log/nginx/access.log /var/log/nginx/error.log | ccze
