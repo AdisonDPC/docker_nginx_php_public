@@ -11,7 +11,7 @@ return [
       'driver' => 'mysql',
       'mysql' => [
         'driver' => 'mysql',
-        'host' => '192.168.1.122:3344',
+        'host' => '192.168.1.111:3344',
         'database' => 'db_test',
         'username' => 'testuser',
         'password' => 'testuser@docker',
