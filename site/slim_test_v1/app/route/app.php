@@ -72,8 +72,14 @@ $aApp -> get('/migrate/pokemons/json/to/sql', function () {
 $aApp -> get('/pokemon/all/closure', function (Request $rRequest, Response $rResponse) {
 
   $aConfig = $this -> get('config');
+  $aData = [];
 
-  $aData = ($aConfig['db']['driver'] == 'json') ? json_decode(file_get_contents($this -> db['path'] . '/' . $this -> db['filename']), true) : $this -> db -> table('pokemons') -> get();
+  if (!in_array($aConfig['db']['driver'], ['mysql', 'json']))
+    return 'Error: Not MySQL or JSON driver';
+  elseif ($aConfig['db']['driver'] == 'mysql')
+    $aData = $this -> db -> table('pokemons') -> get();
+  else
+    $aData = json_decode(file_get_contents($this -> db['path'] . '/' . $this -> db['filename']), true);
 
   $aParameters = [
     'aPage' =>  [
