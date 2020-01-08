@@ -9,10 +9,6 @@ composer install
 composer clear-cache
 composer dump-autoload
 
-# Set Owners and Groups in databases folder.
-
-chown -R :${GROUP} database
-
 # Configuring site in NGiNX server.
 
 rm /etc/nginx/sites-enabled/default

@@ -77,7 +77,7 @@ RUN apt-get clean -y && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # Copy NGiNX configuration file to Docker container.
-COPY /config/nginx/ /etc/nginx/sites-available/
+COPY /config/nginx/sites-available/ /etc/nginx/sites-available/
 
 # Copy docker-entrypoint.sh file to Docker container.
 COPY docker-entrypoint.sh /docker-entrypoint.sh
