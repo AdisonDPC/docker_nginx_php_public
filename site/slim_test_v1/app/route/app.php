@@ -26,7 +26,7 @@ $aApp -> get('/migrate/pokemons/json/to/sql', function () {
 
   if ($aConfig['db']['driver'] != 'json') return 'Error: Not JSON driver';
 
-  $aData = json_decode(file_get_contents($this -> db['path'] . '/' . $this -> cContainer -> db['filename']), true);
+  $aData = json_decode(file_get_contents($this -> db['path'] . '/' . $this -> db['filename']), true);
   $iData = count($aData);
 
   $strHTML  = '';

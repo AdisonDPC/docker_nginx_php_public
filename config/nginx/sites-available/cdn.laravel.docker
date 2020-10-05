@@ -1,0 +1,32 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name localhost;
+
+    root   /var/www/html/storage/app/public;
+
+    # Compression.
+    include sites-available/includes/gzip.conf;
+
+    # Basic security configuration.
+    include sites-available/includes/sec.conf;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name localhost;
+
+    root   /var/www/html/storage/app/public;
+
+    # Compression.
+    include sites-available/includes/gzip.conf;
+
+    # Basic security configuration.
+    include sites-available/includes/sec.conf;
+
+    ssl_certificate /etc/nginx/ssl/docker/nginx.pem;
+    ssl_certificate_key /etc/nginx/ssl/docker/nginx.key;
+}

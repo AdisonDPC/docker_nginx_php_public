@@ -1,0 +1,48 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name localhost;
+
+    root   /var/www/html;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Compression.
+    include sites-available/includes/gzip.conf;
+
+    # Basic security configuration.
+    include sites-available/includes/sec.conf;
+
+    # PHP configuration.
+    include sites-available/includes/php.conf;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name localhost;
+
+    root   /var/www/html;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Compression.
+    include sites-available/includes/gzip.conf;
+
+    # Basic security configuration.
+    include sites-available/includes/sec.conf;
+
+    # PHP configuration.
+    include sites-available/includes/php.conf;
+
+    ssl_certificate /etc/nginx/ssl/docker/nginx.pem;
+    ssl_certificate_key /etc/nginx/ssl/docker/nginx.key;
+}

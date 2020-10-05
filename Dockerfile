@@ -1,10 +1,10 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /var/www/html
 
-ENV PHP_VERSION 7.3
+ENV PHP_VERSION 7.4
 
 RUN apt update && apt upgrade -y && apt install -y \
     build-essential \
@@ -36,7 +36,6 @@ RUN apt update && apt upgrade -y && apt install -y \
     php$PHP_VERSION-ldap \
     php$PHP_VERSION-pgsql \
     php$PHP_VERSION-pspell \
-    php$PHP_VERSION-recode \
     php$PHP_VERSION-snmp \
     php$PHP_VERSION-tidy \
     php$PHP_VERSION-dev \
@@ -65,7 +64,7 @@ RUN apt update && apt upgrade -y && apt install -y \
     ln -s /etc/php/$PHP_VERSION/mods-available/xdebug.ini /etc/php/$PHP_VERSION/cli/conf.d/20-xdebug.ini && \
     ln -s /etc/php/$PHP_VERSION/mods-available/xdebug.ini /etc/php/$PHP_VERSION/phpdbg/conf.d/20-xdebug.ini && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+    php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/local/bin/composer
@@ -77,11 +76,19 @@ RUN apt-get clean -y && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # Copy NGiNX configuration file to Docker container.
+COPY /config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY /config/nginx/sites-available/ /etc/nginx/sites-available/
+
+# Copy NGiNX SSL file to Docker container.
+COPY /config/nginx/ssl/ /etc/nginx/ssl/
+
+# Copy PHP configuration file to Docker container.
+COPY /config/php/php.ini /etc/php/7.4/fpm/php.ini
+COPY /config/php/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 # Copy docker-entrypoint.sh file to Docker container.
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-EXPOSE 80
+EXPOSE 80 443
 
-ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
+ENTRYPOINT [ "sh", "/docker-entrypoint.sh" ]
