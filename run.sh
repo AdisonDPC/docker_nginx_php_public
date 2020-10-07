@@ -18,26 +18,28 @@ CONFIG_PATH=${ROOT_PATH}/config
 
 # Run docker container.
 
-# SERVER_ADDR='<SERVER_ADDR>'
+# SERVER_ADDR=<SERVER_ADDR>
 
-# VIRTUAL_HOST='<VIRTUAL_HOST>'
-# VIRTUAL_VOLUME='<VIRTUAL_HOST>'
-# VIRTUAL_PORT_80='<VIRTUAL_PORT_80>'
-# VIRTUAL_PORT_443='<VIRTUAL_PORT_443>'
+# VIRTUAL_TYPE=<VIRTUAL_TYPE>
+# VIRTUAL_HOST=<VIRTUAL_HOST>
+# VIRTUAL_VOLUME=<VIRTUAL_HOST>
+# VIRTUAL_PORT_80=<VIRTUAL_PORT_80>
+# VIRTUAL_PORT_443=<VIRTUAL_PORT_443>
 
 # Use in Development.
-# docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=wordpress -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
+# docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=${VIRTUAL_TYPE} -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
 
 # Use in Production.
-# docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -d -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=wordpress -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
+# docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -d -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=${VIRTUAL_TYPE} -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
 
-SERVER_ADDR='192.168.1.111'
+SERVER_ADDR=192.168.1.111
 
 # SITE
 
-VIRTUAL_HOST='slim.adpcprojects.docker.com'
-VIRTUAL_VOLUME=${SITE_PATH}'/slim_test_v1'
+VIRTUAL_TYPE=slim
+VIRTUAL_HOST=slim.adpcprojects.docker.com
+VIRTUAL_VOLUME=${SITE_PATH}/slim_test_v1
 VIRTUAL_PORT_80=8080
 VIRTUAL_PORT_443=4430
 
-docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=slim -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
+docker run --name ${AUTHOR}_$(echo "${NAME}" | tr '/' '_') -it --rm -e SERVER_ADDR=${SERVER_ADDR} -e VIRTUAL_HOST=${VIRTUAL_HOST} -e VIRTUAL_TYPE=${VIRTUAL_TYPE} -p ${VIRTUAL_PORT_80}:80 -p ${VIRTUAL_PORT_443}:443 -v ${VIRTUAL_VOLUME}:/var/www/html ${AUTHOR}/${NAME}:${TAG}
