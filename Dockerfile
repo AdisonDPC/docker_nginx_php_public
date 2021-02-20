@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /var/www/html
 
-ENV PHP_VERSION 7.4
+ENV PHP_VERSION 8.0
 
 RUN apt update && apt upgrade -y && apt install -y \
     build-essential \
@@ -26,7 +26,7 @@ RUN apt update && apt upgrade -y && apt install -y \
     php$PHP_VERSION-fpm \
     php$PHP_VERSION-cli \
     php$PHP_VERSION-common \
-    php$PHP_VERSION-json \
+    # php$PHP_VERSION-json \
     php$PHP_VERSION-opcache \
     php$PHP_VERSION-mysql \
     php$PHP_VERSION-phpdbg \
@@ -83,8 +83,8 @@ COPY /config/nginx/sites-available/ /etc/nginx/sites-available/
 COPY /config/nginx/ssl/ /etc/nginx/ssl/
 
 # Copy PHP configuration file to Docker container.
-COPY /config/php/php.ini /etc/php/7.4/fpm/php.ini
-COPY /config/php/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY /config/php/php.ini /etc/php/$PHP_VERSION/fpm/php.ini
+COPY /config/php/www.conf /etc/php/$PHP_VERSION/fpm/pool.d/www.conf
 
 # Copy docker-entrypoint.sh file to Docker container.
 COPY docker-entrypoint.sh /docker-entrypoint.sh

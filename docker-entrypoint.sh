@@ -3,6 +3,9 @@
 USER_ROOT='root';
 GROUP='www-data';
 
+# PHP Version.
+PHP_VERSION='8.0';
+
 # Configuring site in NGiNX server.
 
 ETC_FILE='/etc';
@@ -33,7 +36,7 @@ echo "127.0.0.1 ${VIRTUAL_HOST}" >> ${ETC_FILE}/hosts
 
 # Run NGiNX and PHP services.
 
-service php7.4-fpm start
+service php${PHP_VERSION}-fpm start
 service nginx start
 
 # BEGIN IMPORTANT - SET PERMISIONS, USER, GROUPS IN SITE FILES.
