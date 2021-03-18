@@ -1,3 +1,6 @@
+# Cache configuration.
+include sites-available/includes/cache/outside_server.conf;
+
 server {
     listen 80;
     listen [::]:80;
