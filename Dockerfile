@@ -9,6 +9,7 @@ ENV PHP_VERSION 8.0
 RUN apt update && apt upgrade -y && apt install -y \
     build-essential \
     wget \
+    vim
     git \
     unzip \
     ccze \
